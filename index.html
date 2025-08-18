@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lan <div class="floating-hearts">
+<div class="heart heart-1">♥</div>
+<div class="heart heart-2">♥< <div class="particles-background">
+        <div class="particle rose rose-1">🌹</div>
+        <div class="particle rose rose-2">🌸</div>
+        <div class="particle rose rose-3">🌹</div>
+        <div class="particle rose rose-4">🌸</div>
+        <div class="particle rose rose-5">🌹</div>
+        <div class="particle rose rose-6">🌸</div>
+        <div class="particle rose rose-7">🌹</div>
+        <div class="particle rose rose-8">🌸</div>
+        <div class="particle rose rose-9">🌹</div>
+        <div class="particle rose rose-10">🌸</div>
+</div>
+<div class="heart heart-3">♥</div>
+<div class="heart heart-4">♥</div>
+<div class="heart heart-5">♥</div>
+<div class="heart heart-6">♥</div>
+<div class="heart heart-7">♥</div>
+<div class="heart heart-8">♥</div>
+<div class="heart heart-9">♥</div>
+</div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayara & Igor - Convite de Casamento</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nickainley&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Controle de música -->
+    <div class="music-control">
+        <button id="music-toggle" class="music-btn" title="Reproduzir música">
+            <span class="music-icon">🎵</span>
+        </button>
+    </div>
+
+    <!-- Áudio de fundo -->
+    <audio id="background-music" loop preload="auto">
+        <source src="music/Christina Perri.MP3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tela inicial -->
+    <div class="intro-screen active" id="intro-screen">
+        <div class="hearts-animation">
+            <div class="heart heart-1">♥</div>
+            <div class="heart heart-2">♥</div>
+            <div class="heart heart-3">♥</div>
+            <div class="heart heart-4">♥</div>
+            <div class="heart heart-5">♥</div>
+            <div class="heart heart-6">♥</div>
+            <div class="heart heart-7">♥</div>
+            <div class="heart heart-8">♥</div>
+            <div class="heart heart-9">♥</div>
+        </div>
+
+        <div class="intro-content">
+            <h1 class="intro-title">Bem-vindos</h1>
+
+            <div class="main-heart-container">
+                <div class="main-heart" id="main-heart">
+                    <div class="heart-inner">♥</div>
+                    <div class="heart-glow"></div>
+                </div>
+                <p class="heart-instruction">Clique no coração para abrir</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela do convite -->
+    <div class="invitation-screen" id="invitation-screen">
+        <div class="invitation-container">
+            <!-- Lado esquerdo - Informações dos noivos -->
+            <div class="invitation-left">
+                <div class="couple-section">
+                    <div class="couple-photo">
+                        <img src="/img/image.png" alt="Mayara & Igor" class="photo">
+                        <div class="photo-border"></div>
+                        <div class="photo-glow"></div>
+                    </div>
+
+                    <div class="couple-names">
+                        <h1 class="names-text">Mayara & Igor</h1>
+                        <div class="names-decoration">
+                            <span class="decoration-line"></span>
+                            <span class="decoration-heart">♥</span>
+                            <span class="decoration-line"></span>
+                        </div>
+                        <p class="wedding-date">8 de Novembro • 2025</p>
+                    </div>
+                </div>
+
+                <!-- Galeria de Fotos com Efeitos -->
+                <div class="photo-gallery">
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carousel-track">
+                            <!-- Foto 1 - Polaroid -->
+                            <div class="carousel-slide active">
+                                <div class="photo-item polaroid">
+                                    <img src="img/image.png" alt="Momento especial 1" class="gallery-photo">
+                                    <div class="photo-caption">Primeiro encontro</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Foto 2 - Polaroid -->
+                            <div class="carousel-slide">
+                                <div class="photo-item polaroid">
+                                    <img src="img/image.png" alt="Momento especial 2" class="gallery-photo">
+                                    <div class="photo-caption">Nosso primeiro beijo</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Foto 3 - Polaroid -->
+                            <div class="carousel-slide">
+                                <div class="photo-item polaroid">
+                                    <img src="img/logo2.jpeg" alt="Momento especial 3" class="gallery-photo">
+                                    <div class="photo-caption">Pedido de namoro</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Foto 4 - Polaroid -->
+                            <div class="carousel-slide">
+                                <div class="photo-item polaroid">
+                                    <img src="img/image.png" alt="Momento especial 4" class="gallery-photo">
+                                    <div class="photo-caption">Pedido de casamento</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Indicadores do carrossel -->
+                        <div class="carousel-indicators">
+                            <span class="indicator active" data-slide="0"></span>
+                            <span class="indicator" data-slide="1"></span>
+                            <span class="indicator" data-slide="2"></span>
+                            <span class="indicator" data-slide="3"></span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Lado direito - Detalhes do convite -->
+            <div class="invitation-right">
+                <!-- Rosa decorativa no topo -->
+                <div class="top-rose-decoration">
+                    <img src="img/rosa.png" alt="Rosa decorativa" class="rose-decoration">
+                </div>
+
+                <div class="invitation-header">
+                    <h2 class="invitation-title">Convite de Casamento</h2>
+                    <p class="verse">"Assim, de modo que não são mais dois, mas uma só carne. Portanto, o que Deus pôs sob o mesmo jugo, o homem não deve separar.”." MT-19:6</p>
+                    <div class="golden-line"></div>
+                </div>
+
+                <div class="invitation-message">
+                    <p class="message-text">
+                        É com imensa alegria em nossos corações, que<br>
+                        convidamos você e sua família para celebrar<br>
+                        conosco este momento único e especial:<br><br>
+
+                        <em class="highlight-text">
+                            O início de nossa jornada<br>
+                            como marido e mulher ♥
+                        </em>
+                    </p>
+                </div>
+
+                <!-- Separador -->
+                <div class="section-separator">
+                    <div class="separator-line"></div>
+                    <div class="separator-heart">♥</div>
+                    <div class="separator-line"></div>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-card ceremony">
+                        <div class="card-icon">🏚</div>
+                        <h3 class="card-title">Cerimônia</h3>
+                        <p class="card-info">Cartório de Registro Civil</p>
+                        <p class="card-time">HORA A DEFINIR</p>
+                        <p class="card-date">Rua 7 de Setembro, 329 - Jardim Pau Preto - Indaiatuba-SP</p>
+                    </div>
+
+                    <div class="detail-card ceremony">
+                        <div class="card-icon">🎉</div>
+                        <h3 class="card-title">Almoço Especial de Comemoração</h3>
+                        <p class="card-time">HORA A DEFINIR</p>
+                        <p class="card-date">Rua Augusto Angartem, 762 - Jardim Monte Verde</p>
+
+                        <p class="card-date"></p>
+                    </div>
+                </div>
+
+                <!-- Separador -->
+                <div class="section-separator">
+                    <div class="separator-line"></div>
+                    <div class="separator-heart">♥</div>
+                    <div class="separator-line"></div>
+                </div>
+
+                <div class="closing-message">
+                    <p class="closing-text">
+                        Sua presença é o presente mais precioso<br>
+                        que podemos receber neste dia especial!
+                    </p>
+
+                    <!-- Seção de Confirmação WhatsApp -->
+                    <div class="rsvp-section">
+                        <h3 class="rsvp-title">Confirme sua Presença</h3>
+                        <p class="rsvp-subtitle">Ajude-nos a organizar este dia especial!</p>
+
+                        <div class="rsvp-form">
+                            <div class="people-selector">
+                                <label for="people-count">Quantas pessoas?</label>
+                                <div class="count-buttons">
+                                    <button type="button" class="count-btn" data-count="1">1</button>
+                                    <button type="button" class="count-btn" data-count="2">2</button>
+                                    <button type="button" class="count-btn" data-count="3">3</button>
+                                    <button type="button" class="count-btn" data-count="4">4</button>
+                                </div>
+                            </div>
+
+                            <div class="confirmation-buttons">
+                                <button type="button" class="whatsapp-btn confirm-yes" id="confirm-yes">
+                                    <span class="whatsapp-icon">📱</span>
+                                    <span class="btn-text">SIM, Confirmo!</span>
+                                </button>
+                                <button type="button" class="whatsapp-btn confirm-no" id="confirm-no">
+                                    <span class="whatsapp-icon">📱</span>
+                                    <span class="btn-text">Não Poderei</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <p class="rsvp-note">Por favor, confirme até 20 de Outubro de 2025</p>
+                    </div>
+
+                    <div class="signature">
+                        <p class="signature-text">Com muito amor,</p>
+                        <p class="signature-names">Mayara & Igor</p>
+                        <div class="signature-rings">💍💍</div>
+                    </div>
+                </div>
+
+
+
+                <div class="invitation-footer">
+                    <div class="decorative-elements">
+                        <span class="deco-heart">♥</span>
+                        <span class="deco-flower">❀</span>
+                        <span class="deco-heart">♥</span>
+                        <span class="deco-flower">❀</span>
+                        <span class="deco-heart">♥</span>
+                    </div>
+
+                    <button class="back-button" id="back-button">
+                        ← Voltar ao início
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Partículas decorativas -->
+        <div class="particles-container">
+            <div class="particle rose rose-1">🌹</div>
+            <div class="particle rose rose-2">🌸</div>
+            <div class="particle rose rose-3">🌹</div>
+            <div class="particle rose rose-4">🌸</div>
+            <div class="particle rose rose-5">🌹</div>
+            <div class="particle rose rose-6">🌸</div>
+            <div class="particle rose rose-7">🌹</div>
+            <div class="particle rose rose-8">🌸</div>
+            <div class="particle rose rose-9">🌹</div>
+            <div class="particle rose rose-10">🌸</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
