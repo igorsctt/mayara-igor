@@ -121,11 +121,6 @@ function showIntroScreen() {
 }
 
 function showInvitationScreen() {
-    // Tentar reproduzir música na primeira interação
-    if (!isMusicPlaying && musicInitialized) {
-        playMusic();
-    }
-    
     // Trocar telas
     introScreen.classList.remove('active');
     setTimeout(() => {
@@ -345,6 +340,21 @@ function setupEventListeners() {
             setTimeout(() => {
                 mainHeart.style.transform = '';
             }, 300);
+            
+            // Tentar inicializar e tocar música imediatamente
+            if (backgroundMusic && !isMusicPlaying) {
+                backgroundMusic.currentTime = 0;
+                backgroundMusic.play().then(() => {
+                    console.log('Música iniciada com sucesso');
+                    isMusicPlaying = true;
+                    musicInitialized = true;
+                    if (musicToggle) {
+                        musicToggle.textContent = '🔊';
+                    }
+                }).catch(error => {
+                    console.warn('Erro ao tocar música:', error);
+                });
+            }
             
             // Mostrar convite após delay
             setTimeout(() => {
