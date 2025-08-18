@@ -776,10 +776,10 @@ body {
     
 }
 
-/* Apenas o parágrafo do versículo */
+/* penas o parágrafo do versículo */
 .invitation-header .verse {
     font-family: 'Nickainley', cursive !important;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: normal;
     color: black;
     text-align: center;
