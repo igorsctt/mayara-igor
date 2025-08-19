@@ -445,9 +445,71 @@ body {
 .wedding-date {
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     font-weight: 300;
-    opacity: 0.9;
     letter-spacing: 2px;
+    position: relative;
     color: rgba(228, 12, 66, 0.986);
+    animation: dateGlow 3s ease-in-out infinite;
+    text-shadow: 3px 3px 6px rgba(228, 12, 66, 0.3);
+    padding: 15px 25px;
+    border: 2px solid rgba(228, 12, 66, 0.3);
+    border-radius: 25px;
+    margin: 10px 0;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(228, 12, 66, 0.2);
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(228, 12, 66, 0.05));
+    transform: translateZ(0);
+}
+
+.wedding-date::before {
+    content: "✨";
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: sparkle 2s ease-in-out infinite;
+    font-size: 1.2em;
+}
+
+.wedding-date::after {
+    content: "✨";
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: sparkle 2s ease-in-out infinite 1s;
+    font-size: 1.2em;
+}
+
+@keyframes dateGlow {
+    0%, 100% { 
+        text-shadow: 3px 3px 6px rgba(228, 12, 66, 0.3),
+                     0 0 20px rgba(228, 12, 66, 0.2),
+                     0 0 30px rgba(228, 12, 66, 0.1);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 3px 3px 6px rgba(228, 12, 66, 0.5),
+                     0 0 25px rgba(228, 12, 66, 0.4),
+                     0 0 35px rgba(228, 12, 66, 0.2);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes sparkle {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: translateY(-50%) scale(0.8);
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateY(-50%) scale(1.2);
+    }
 }
 
 /* ===== GALERIA DE FOTOS COM EFEITOS - CARROSSEL ===== */
@@ -743,12 +805,31 @@ body {
     }
     
     .gallery-photo {
-        height: 140px;
+        height: 240px;
     }
     
     .polaroid {
         padding: 12px 12px 35px 12px;
         max-width: 220px;
+    }
+    
+    .wedding-date {
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 20px;
+    }
+    
+    .wedding-date::before,
+    .wedding-date::after {
+        font-size: 1em;
+    }
+    
+    .wedding-date::before {
+        left: -20px;
+    }
+    
+    .wedding-date::after {
+        right: -20px;
     }
 }
 
@@ -780,7 +861,7 @@ body {
 .invitation-header .verse {
     font-family: 'Nickainley', cursive !important;
     font-size: 19px;
-    font-weight: normal;
+    font-weight: bold;
     color: black;
     text-align: center;
     margin-top: 10px;
@@ -1151,7 +1232,7 @@ body {
 
 .rsvp-note {
     font-size: 0.9rem;
-    color: #666;
+    color: red;
     font-style: italic;
     margin-top: 15px;
 }
@@ -1244,6 +1325,7 @@ body {
     text-align: center;
     position: relative;
     z-index: 1;
+    margin-bottom: 50px;
 }
 
 .decorative-elements {
