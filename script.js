@@ -573,7 +573,7 @@ function sendWhatsAppConfirmation(isConfirming) {
 
 // ===== FUNCIONALIDADE DA GALERIA DE FOTOS - CARROSSEL =====
 let currentSlide = 0;
-const totalSlides = 4;
+const totalSlides = 5;
 let carouselInterval;
 
 function setupPhotoCarousel() {
