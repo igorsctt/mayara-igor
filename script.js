@@ -703,7 +703,173 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         setupPhotoCarousel();
         setupPhotoEffects();
+        setupPixGiftSection(); // Inicializar seção de presentes PIX
     }, 500); // Pequeno delay para garantir que elementos estejam prontos
 });
+
+// ===== SEÇÃO DE PRESENTES PIX =====
+function setupPixGiftSection() {
+    const pixCodeInput = document.getElementById('pix-code');
+    const copyButton = document.getElementById('copy-pix-code');
+    
+    if (!pixCodeInput || !copyButton) return;
+    
+    // Configurar botão de cópia
+    copyButton.addEventListener('click', function() {
+        copyPixCode(pixCodeInput, copyButton);
+    });
+    
+    // Permitir cópia clicando no input também
+    pixCodeInput.addEventListener('click', function() {
+        this.select();
+        copyPixCode(pixCodeInput, copyButton);
+    });
+}
+
+function copyPixCode(input, button) {
+    try {
+        // Selecionar o texto
+        input.select();
+        input.setSelectionRange(0, 99999); // Para mobile
+        
+        // Copiar para clipboard
+        navigator.clipboard.writeText(input.value).then(() => {
+            showCopySuccess(button);
+        }).catch(() => {
+            // Fallback para navegadores antigos
+            document.execCommand('copy');
+            showCopySuccess(button);
+        });
+        
+    } catch (error) {
+        console.warn('Erro ao copiar código PIX:', error);
+        // Mostrar mensagem de erro amigável
+        showCopyError(button);
+    }
+}
+
+function showCopySuccess(button) {
+    const originalHTML = button.innerHTML;
+    const originalStyle = button.style.cssText;
+    
+    // Animar sucesso
+    button.innerHTML = '<span class="copy-icon">✅</span>';
+    button.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+    button.style.transform = 'scale(1.1)';
+    
+    // Criar notificação de sucesso
+    showNotification('✅ Código PIX copiado com sucesso!', 'success');
+    
+    // Restaurar botão após animação
+    setTimeout(() => {
+        button.innerHTML = originalHTML;
+        button.style.cssText = originalStyle;
+    }, 2000);
+}
+
+function showCopyError(button) {
+    const originalHTML = button.innerHTML;
+    const originalStyle = button.style.cssText;
+    
+    // Animar erro
+    button.innerHTML = '<span class="copy-icon">❌</span>';
+    button.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+    button.style.animation = 'shake 0.5s ease-in-out';
+    
+    // Criar notificação de erro
+    showNotification('❌ Não foi possível copiar. Tente selecionar e copiar manualmente.', 'error');
+    
+    // Restaurar botão
+    setTimeout(() => {
+        button.innerHTML = originalHTML;
+        button.style.cssText = originalStyle;
+    }, 2000);
+}
+
+function showNotification(message, type) {
+    // Remover notificação existente
+    const existingNotification = document.querySelector('.pix-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Criar nova notificação
+    const notification = document.createElement('div');
+    notification.className = 'pix-notification';
+    
+    const bgColor = type === 'success' 
+        ? 'linear-gradient(135deg, #27ae60, #2ecc71)'
+        : 'linear-gradient(135deg, #e74c3c, #c0392b)';
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${bgColor};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-family: 'Playfair Display', serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        z-index: 10000;
+        animation: slideInNotification 0.3s ease-out forwards;
+        max-width: 300px;
+        text-align: center;
+        line-height: 1.4;
+    `;
+    
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    // Remover após 4 segundos
+    setTimeout(() => {
+        notification.style.animation = 'slideOutNotification 0.3s ease-in forwards';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 4000);
+}
+
+// Adicionar animações de notificação ao CSS
+const notificationStyle = document.createElement('style');
+notificationStyle.textContent = `
+    @keyframes slideInNotification {
+        0% { 
+            opacity: 0; 
+            transform: translateX(100%) translateY(-20px); 
+        }
+        100% { 
+            opacity: 1; 
+            transform: translateX(0) translateY(0); 
+        }
+    }
+    
+    @keyframes slideOutNotification {
+        0% { 
+            opacity: 1; 
+            transform: translateX(0) translateY(0); 
+        }
+        100% { 
+            opacity: 0; 
+            transform: translateX(100%) translateY(-20px); 
+        }
+    }
+`;
+document.head.appendChild(notificationStyle);
+
+// Adicionar animação shake ao CSS
+const shakeStyle = document.createElement('style');
+shakeStyle.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+`;
+document.head.appendChild(shakeStyle);
 
 console.log('🎉 Convite de Casamento - Mayara & Igor inicializado com sucesso!');

@@ -1604,13 +1604,13 @@ body {
 
 /* ===== SUPORTE PARA IMPRESSÃO ===== */
 @media print {
-    .music-control,
-    .back-button,
+    .music-control,      
+    .back-button,        
     .particles-container,
-    .hearts-animation {
+    .hearts-animation {  
         display: none;
     }
-    
+
     .invitation-container {
         box-shadow: none;
         background: white;
@@ -1618,8 +1618,283 @@ body {
         margin: 0;
         grid-template-columns: 1fr;
     }
-    
+
     .invitation-left {
         background: #f5f5f5;
+    }
+}
+
+/* ===== SEÇÃO DE PRESENTES PIX ===== */
+.gift-section {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,215,218,0.1) 100%);
+    border: 2px solid rgba(228, 12, 66, 0.2);
+    border-radius: 20px;
+    padding: 30px 25px;
+    margin: 30px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(228, 12, 66, 0.1);
+}
+
+.gift-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, rgba(228, 12, 66, 0.3), transparent, rgba(228, 12, 66, 0.3));
+    border-radius: 20px;
+    z-index: -1;
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.gift-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: rgba(228, 12, 66, 0.986);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(228, 12, 66, 0.2);
+}
+
+.gift-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: rgba(228, 12, 66, 0.8);
+    margin-bottom: 15px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.gift-description {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.pix-container {
+    background: rgba(255,255,255,0.7);
+    border-radius: 15px;
+    padding: 25px 20px;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.pix-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.pix-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 2px 4px rgba(228, 12, 66, 0.3));
+}
+
+.pix-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: rgba(228, 12, 66, 0.9);
+    margin: 0;
+    font-weight: 600;
+}
+
+/* QR Code Section */
+.qr-code-section {
+    margin-bottom: 25px;
+    padding: 30px 20px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    border: 2px solid rgba(228, 12, 66, 0.15);
+    text-align: center;
+}
+
+.qr-code-container {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code-image {
+    width: 500px;
+    height: 280px;
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(228, 12, 66, 0.1);
+    margin: 0 auto 15px auto;
+    display: block;
+}
+
+.qr-text {
+    font-family: 'Playfair Display', serif;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Código PIX */
+.pix-code-section {
+    margin-bottom: 20px;
+}
+
+.pix-code-label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: rgba(228, 12, 66, 0.8);
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.pix-code-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 12px;
+    padding: 5px;
+    border: 2px solid rgba(228, 12, 66, 0.2);
+    transition: all 0.3s ease;
+}
+
+.pix-code-container:hover {
+    border-color: rgba(228, 12, 66, 0.4);
+    box-shadow: 0 4px 15px rgba(228, 12, 66, 0.1);
+}
+
+.pix-code-input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: transparent;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #444;
+    word-break: break-all;
+    line-height: 1.4;
+    resize: none;
+    outline: none;
+}
+
+.copy-btn {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, rgba(228, 12, 66, 0.8), rgba(228, 12, 66, 0.6));
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    box-shadow: 0 2px 10px rgba(228, 12, 66, 0.3);
+}
+
+.copy-btn:hover {
+    background: linear-gradient(135deg, rgba(228, 12, 66, 0.9), rgba(228, 12, 66, 0.7));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(228, 12, 66, 0.4);
+}
+
+.copy-btn:active {
+    transform: translateY(0);
+    animation: copySuccess 0.6s ease-out;
+}
+
+@keyframes copySuccess {
+    0% { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+    50% { background: linear-gradient(135deg, #27ae60, #2ecc71); transform: scale(1.1); }
+    100% { background: linear-gradient(135deg, rgba(228, 12, 66, 0.8), rgba(228, 12, 66, 0.6)); }
+}
+
+.copy-instruction {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin: 10px 0 0 0;
+    font-style: italic;
+}
+
+.pix-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(228, 12, 66, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid rgba(228, 12, 66, 0.3);
+}
+
+.pix-details {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.pix-details strong {
+    color: rgba(228, 12, 66, 0.8);
+    font-weight: 600;
+}
+
+/* Responsivo para seção de presentes */
+@media (max-width: 768px) {
+    .gift-section {
+        padding: 25px 20px;
+        margin: 25px 0;
+    }
+    
+    .pix-container {
+        padding: 20px 15px;
+    }
+    
+    .gift-title {
+        font-size: 2.2rem;
+    }
+    
+    .gift-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .qr-code-container {
+        padding: 20px 15px;
+    }
+    
+    .qr-code-image {
+        width: 500px;
+        height: 220px;
+    }
+    
+    .qr-text {
+        font-size: 0.9rem;
+    }
+    
+    .pix-code-input {
+        font-size: 0.75rem;
+        padding: 12px;
+    }
+    
+    .copy-btn {
+        padding: 12px 15px;
+        min-width: 50px;
     }
 }
