@@ -499,7 +499,9 @@ function markUserInteraction() {
 });
 
 // ===== FUNCIONALIDADE WHATSAPP CONFIRMAÇÃO =====
-let selectedCount = 1; // Número padrão de pessoas
+let selectedAdultCount = 1; // Número padrão de pessoas adultas
+let selectedChildrenFreeCount = 0; // Crianças até 6 anos (gratuitas)
+let selectedChildrenPaidCount = 0; // Crianças 7+ anos (pagam buffet)
 
 // Configurar seleção de quantidade
 document.addEventListener('DOMContentLoaded', function() {
@@ -507,22 +509,63 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function setupRSVPButtons() {
-    // Botões de quantidade de pessoas
-    const countButtons = document.querySelectorAll('.count-btn');
-    countButtons.forEach(btn => {
+    // Botões de quantidade de pessoas adultas
+    const adultCountButtons = document.querySelectorAll('.adult-btn');
+    adultCountButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             // Remover seleção anterior
-            countButtons.forEach(b => b.classList.remove('selected'));
+            adultCountButtons.forEach(b => b.classList.remove('selected'));
             
             // Adicionar seleção atual
             this.classList.add('selected');
-            selectedCount = parseInt(this.dataset.count);
+            selectedAdultCount = parseInt(this.dataset.count);
+            
+            // Verificar limite total
+            checkTotalLimit();
         });
     });
     
-    // Selecionar 1 pessoa por padrão
-    if (countButtons.length > 0) {
-        countButtons[0].classList.add('selected');
+    // Botões de quantidade de crianças gratuitas (até 6 anos)
+    const childrenFreeButtons = document.querySelectorAll('.children-free-btn');
+    childrenFreeButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remover seleção anterior
+            childrenFreeButtons.forEach(b => b.classList.remove('selected'));
+            
+            // Adicionar seleção atual
+            this.classList.add('selected');
+            selectedChildrenFreeCount = parseInt(this.dataset.count);
+            
+            // Verificar limite total
+            checkTotalLimit();
+        });
+    });
+    
+    // Botões de quantidade de crianças pagas (7+ anos)
+    const childrenPaidButtons = document.querySelectorAll('.children-paid-btn');
+    childrenPaidButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remover seleção anterior
+            childrenPaidButtons.forEach(b => b.classList.remove('selected'));
+            
+            // Adicionar seleção atual
+            this.classList.add('selected');
+            selectedChildrenPaidCount = parseInt(this.dataset.count);
+            
+            // Verificar limite total
+            checkTotalLimit();
+        });
+    });
+    
+    // Selecionar valores padrão
+    if (adultCountButtons.length > 0) {
+        adultCountButtons[0].classList.add('selected'); // 1 adulto por padrão
+    }
+    if (childrenFreeButtons.length > 0) {
+        childrenFreeButtons[0].classList.add('selected'); // 0 crianças gratuitas por padrão
+    }
+    if (childrenPaidButtons.length > 0) {
+        childrenPaidButtons[0].classList.add('selected'); // 0 crianças pagas por padrão
     }
     
     // Botão de confirmação SIM
@@ -542,23 +585,50 @@ function setupRSVPButtons() {
     }
 }
 
+function checkTotalLimit() {
+    const totalPeople = selectedAdultCount + selectedChildrenFreeCount + selectedChildrenPaidCount;
+    const maxTotal = 9;
+    
+    if (totalPeople > maxTotal) {
+        alert(`Máximo de ${maxTotal} pessoas por família. Por favor, ajuste os números.`);
+        return false;
+    }
+    return true;
+}
+
 function sendWhatsAppConfirmation(isConfirming) {
+    // Verificar limite antes de enviar
+    if (!checkTotalLimit()) {
+        return;
+    }
+    
     // Número do WhatsApp dos noivos (substitua pelo número real)
     const phoneNumber = '5519995393168'; // Formato: país + DDD + número
     
     let message;
     if (isConfirming) {
-        const peopleText = selectedCount === 1 ? 'pessoa' : 'pessoas';
+        const totalPeople = selectedAdultCount + selectedChildrenFreeCount + selectedChildrenPaidCount;
+        const totalPaying = selectedAdultCount + selectedChildrenPaidCount; // Quem paga buffet
+        
+        const adultText = selectedAdultCount === 1 ? 'adulto' : 'adultos';
+        const childrenFreeText = selectedChildrenFreeCount === 1 ? 'criança' : 'crianças';
+        const childrenPaidText = selectedChildrenPaidCount === 1 ? 'criança' : 'crianças';
+        
         message = `*CONFIRMAÇÃO DE PRESENÇA* \n\n` +
                  `*SIM*, confirmo minha presença no casamento!\n\n` +
-                 `*Quantidade de pessoas:* ${selectedCount} ${peopleText}\n\n` +
-                 `Estamos muito felizes em celebrar este momento especial com vocês!\n\n` +
-                 `*Mayara & Igor*`;
+                 ` *Adultos:* ${selectedAdultCount} ${adultText}\n` +
+                 ` *Crianças até 6 anos:* ${selectedChildrenFreeCount} ${childrenFreeText}\n` +
+                 ` *Crianças 7+ anos:* ${selectedChildrenPaidCount} ${childrenPaidText}\n\n` +
+                 ` *Resumo:*\n` +
+                 `• Total de pessoas: ${totalPeople}\n` +
+                 `• Buffet: ${totalPaying}\n\n` +
+                 `Estamos muito felizes em celebrar este momento especial com vocês! \n\n` +
+                 `*Mayara & Igor* `;
     } else {
-        message = `*NÃO PODEREI COMPARECER*\n\n` +
+        message = `*NÃO PODEREI COMPARECER* \n\n` +
                  `Infelizmente não poderei estar presente no casamento.\n\n` +
-                 `Mesmo assim, desejo toda a felicidade do mundo para vocês!\n\n` +
-                 `*Mayara & Igor*`;
+                 `Mesmo assim, desejo toda a felicidade do mundo para vocês! \n\n` +
+                 `*Mayara & Igor* `;
     }
     
     // Codificar mensagem para URL

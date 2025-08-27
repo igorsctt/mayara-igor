@@ -1179,6 +1179,86 @@ body {
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
 }
 
+/* Estilos específicos para diferentes tipos de pessoas */
+
+/* Botões de adultos - dourado */
+.adult-btn {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.adult-btn:hover,
+.adult-btn.selected {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Botões de crianças gratuitas - verde */
+.children-free-btn {
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.children-free-btn:hover,
+.children-free-btn.selected {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+/* Botões de crianças pagas - laranja */
+.children-paid-btn {
+    border-color: #fd7e14;
+    color: #fd7e14;
+}
+
+.children-paid-btn:hover,
+.children-paid-btn.selected {
+    background: #fd7e14;
+    color: white;
+    box-shadow: 0 4px 15px rgba(253, 126, 20, 0.4);
+}
+
+/* Seção de informações do buffet */
+.buffet-info {
+    background: rgba(255, 248, 225, 0.9);
+    border: 2px solid rgba(255, 193, 7, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.buffet-note {
+    font-size: 1rem;
+    color: var(--dark-color);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.buffet-note strong {
+    color: #d4af37;
+    font-weight: 600;
+}
+
+/* Destacar informações sobre pagamento */
+.highlight-free {
+    color: #28a745;
+    font-weight: bold;
+    background: rgba(40, 167, 69, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.highlight-paid {
+    color: #fd7e14;
+    font-weight: bold;
+    background: rgba(253, 126, 20, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
 .confirmation-buttons {
     display: flex;
     gap: 15px;
